@@ -1,0 +1,6 @@
+»нстал€ци€:
+
+1) —копировать все файлы на веб-сервер (например, http://www.yourwebserver.com/admin).
+2) —оздайте MySQL базу данных. ќтредактируйте conf.inc.php (установите MySQL server, database, login, password и др. параметры).
+3) ќткройте в браузере (http://www.yourwebserver.com/admin). 
+4) ƒл€ входа используйте login: nail и пароль: nail

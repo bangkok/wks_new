@@ -1,0 +1,1 @@
+To call image from &quot;Image base&quot; do: <br>&nbsp;&nbsp;<font class=b>&lt;img src=&quot;trf.php?id[0]=ID&t=nrfl&f=flim&quot; alt=&quot;ALT&quot; border=0&gt;</font><br>where, <br><font class=b>ID</font> - id from &quot;Image base&quot;<br><font class=b>ALT</font> - alternative text.<br>

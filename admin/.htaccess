@@ -1,0 +1,6 @@
+AddDefaultCharset windows-1251
+
+php_value error_reporting 7
+php_value register_globals on
+
+RewriteEngine off

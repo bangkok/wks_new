@@ -1,0 +1,77 @@
+Nailer - Readme
+===================
+
+  Nailer is a tool written in PHP intended to handle the management contents of MySQL over the WWW.
+
+  Version 2.64 - 10.03.2004
+  --------------------------
+  http://nailer.sourceforge.net/
+
+    Copyright (C) 2000 Makar Sichevoy <sichevoy@gmail.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  Requirements:
+    PHP3 (>= 3.0.8), PHP4 or PHP5
+    MySQL (tested with 3.21.x, 3.22.x, 3.23.x, 4.0.x and 4.1.x)
+        Note: The implemented MySQL 4.1.x support is experimental!
+    a web-browser
+
+  Summary:
+    Утилита администрирования "Nailer"
+
+    Администратор "Nailer" это: 
+    - добавление, изменение, удаление текстовой информации; 
+    - полнотекстовый поиск; 
+    - постраничный вывод информации; 
+    - настройки выводимой по результатам поиска информации; 
+    - управление дополнительными графическими элементами веб-сервера; 
+    - "умное" удаление данных (возможность восстановления данных из корзины); 
+    - отслеживание целостности данных в БД; 
+    - архивирование всех данных; 
+    - система разграничения прав доступа к данным для проектов с несколькими ответственными редакторами; 
+    - журнал учета операций по каждому из ответственных редакторов; 
+    - экспорт данных в Microsoft Excel; 
+    - изменения цветовой гаммы; 
+    - подробная статистическая информация о работе веб-сервера; 
+    - управление форумом, гостевой книгой, опросником, чатом. 
+    - Администратор "Nailer" дает возможность тонкой настройки и регулирования работы всего веб-сервера.
+
+  Download:
+    You can get the newest version at http://nailer.sourceforge.net/.
+
+  Credits:
+    Please see the Documentation.txt/.html file.
+
+  Installation:
+    Please see the INSTALL file.
+
+  ChangeLog:
+    In ChangeLog
+
+  Documentation:
+    Basic documentation available in /docs/
+
+  Support:
+    See reference about support forums under http://nailer.sourceforge.net/
+
+
+  PS: Please, don't send us emails with question like "How do I compile
+      PHP3 with MySQL-support". We do answer all emails regarding
+      Nailer, but we just don't have the time to be your free helpdesk.
+      Please send your questions to the appropiate mailinglists / forums.
+      Before contacting us, please read the /docs/ (esp. the
+      FAQ part).
+

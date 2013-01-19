@@ -1,0 +1,10 @@
+Installation:
+
+1. Copy to web-server (for example, http://www.yourwebserver.com/admin).
+
+2. Create MySQL database. Edit conf.inc.php (set your MySQL server, database,
+   login, password etc).
+
+3. Open browser (http://www.yourwebserver.com/admin). 
+
+4. Use login: nail and password: nail
