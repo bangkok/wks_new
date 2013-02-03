@@ -25,7 +25,7 @@
 
 
 
-if (str_replace(array('http://', 'www.'), '', $_SERVER['HTTP_HOST']) == 'wks.ll')
+if (substr($_SERVER['HTTP_HOST'], -3, 3) == '.ll')
 {
 	$server='localhost';
 	$login='root';
