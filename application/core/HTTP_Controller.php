@@ -4,7 +4,11 @@ class HTTP_Controller extends CI_Controller {
 
 protected $_view_data = array(
 	'_controller' => NULL,
-	'_path' => array()
+	'_path' => array(),
+	'_head' => array(
+		'_style' => array(),
+		'_js' => array()
+	)
 );
 
 protected $_folder = array(
@@ -27,6 +31,9 @@ function __construct()
 	//$this -> _view_data['_controller'] = &$this;
 
 	$this -> _initPath();
+
+	$this -> setStyles('');
+	$this -> setJs('');
 }
 
 
@@ -59,6 +66,33 @@ protected function _initPath()
 
 	$this -> _path -> block = new Path('block', $this -> _path);
 	$this -> _path -> block['auth'] = $this -> _folder['block'] . 'auth';
+
+	$this -> _path -> css = new Path('css');
+	$this -> _path -> js = new Path('js');
+}
+
+
+function setStyles($styleString, $style = array())
+{
+	$this -> _view_data['_head']['_style'] = array_merge(
+			$style,
+			array_map('trim', explode('|', $styleString))
+		);
+}
+function setJs($jsString, $js = array())
+{
+	$this -> _view_data['_head']['_js'] = array_merge(
+			$js,
+			array_map('trim', explode('|', $jsString))
+		);
+}
+function addStyles($styleString)
+{
+	$this -> setStyles($styleString, $this -> _view_data['_head']['_style']);
+}
+function addJs($jsString)
+{
+	$this -> setJs($jsString, $this -> _view_data['_head']['_js']);
 }
 
 }

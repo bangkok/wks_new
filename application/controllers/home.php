@@ -2,9 +2,14 @@
 
 class Home extends HTTP_Controller {
 
-function about()
+function index()
 {
-	$this->_view();
+	$this -> _view_data['_head']['title'] = 'Welcome to CodeIgniter';
+
+	$this -> addStyles('style');
+	$this -> addJs('core');
+
+	parent::index();
 }
 
 }
