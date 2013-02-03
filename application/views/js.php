@@ -11,7 +11,7 @@ foreach($_js as $name){
 		} else {
 			$file_name = $JS[$name];
 ?>
-<script src="<?=$_path['js'].'/'.$file_name?>" type="text/javascript"></script>
+<script src="<?='/'.$_path['js'].'/'.$file_name?>" type="text/javascript"></script>
 <?php
 		}
 	}

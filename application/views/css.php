@@ -14,7 +14,7 @@ foreach($_style as $name){
 		} else {
 			@list($file_name, $media_type) = array_map('trim', explode('|', $CSS[$name]));
 ?>
-<link href="<?=$_path['css'].'/'.$file_name?>" media="<?=$media_type?$media_type:'screen'?>" rel="stylesheet" type="text/css" >
+<link href="<?='/'.$_path['css'].'/'.$file_name?>" media="<?=$media_type?$media_type:'screen'?>" rel="stylesheet" type="text/css" >
 <?php
 		}
 	}
