@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class HTTP_Controller extends CI_Controller {
+class HTTP_Controller extends Base_Controller {
 
 protected $_view_data = array(
 	'_controller' => NULL,
@@ -32,7 +32,7 @@ function __construct()
 
 	$this -> _initPath();
 
-	$this -> setStyles('');
+	$this -> setStyles('style | page | blocks');
 	$this -> setJs('');
 }
 
@@ -41,7 +41,6 @@ public function index()
 {
 	$this -> _view();
 }
-
 
 protected function _view()
 {
