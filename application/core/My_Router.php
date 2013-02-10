@@ -9,28 +9,46 @@ protected function _getAdditionRoute(){
 
 	if ( !$mdb = DB('', TRUE) ) return array();
 
-	$route = array();
+	$route = $map = $path = array();
+
 	$parent_id = 1;
+
 	$uri = array_filter(explode('/', $_SERVER["REQUEST_URI"]));
 
 	$query = $mdb -> where_in('link', $uri ? $uri : '/')
 		-> where('visible' , 'y')
 		//-> where('sitemap' , 'y')
-		-> order_by('map.upId' , 'asc')
+		-> order_by('upId' , 'asc')
 		-> get('map');
 
-	if ( $row = $query -> row() and $row -> link == reset($uri) and $row -> upId == $parent_id ) {
-		$resource = $row -> resource;
-		$path = $row -> link;
-		$parent_id = $row -> id;
+	foreach ( $query -> result() as $node ) {
 
-		while ( $row = $query -> next_row() and $row -> link == next($uri) and $row -> upId == $parent_id ) {
-			$resource = $row -> resource;
-			$path .= '/'.$row -> link;
-			$parent_id = $row -> id;
+		$map[$node->upId][$node->link] = $node;
+
+	}
+
+	if ( isset($map[$parent_id][reset($uri)]) ) {
+
+		do {
+
+			$node = $map[$parent_id][current($uri)];
+
+			$resource = $node -> resource;
+
+			$path[] = $node -> link;
+
+			$parent_id = $node -> id;
+
+		} while ( isset($map[$parent_id][next($uri)]) );
+
+		if( join('/', $path) != join('/', $uri) ) {
+
+			$path[] = '(:any)';
+
 		}
 
-		$route[$path] = $resource;
+		$route[join('/', $path)] = $resource;
+
 	}
 
 	return $route;
