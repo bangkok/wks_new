@@ -40,9 +40,11 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
-$route['file'] = 'file';
+$route['file/:any'] = 'file';
 
 $route = array_merge($route, $this -> _getAdditionRoute());
+
+$route[':any'] = '404';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
