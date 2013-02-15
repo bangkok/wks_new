@@ -1,0 +1,1 @@
+<div id="bottom_line">$CONTENT COPY$</div>

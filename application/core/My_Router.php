@@ -5,6 +5,8 @@ require_once(BASEPATH . 'database/DB' . EXT);
 class MY_Router extends CI_Router
 {
 
+protected $_node;
+
 protected function _getAdditionRoute(){
 
 	if ( !$mdb = DB('', TRUE) ) return array();
@@ -49,10 +51,17 @@ protected function _getAdditionRoute(){
 
 		$route[join('/', $path)] = $resource;
 
+		$this -> _node = $node;
+
 	}
 
 	return $route;
 
+}
+
+function getNode()
+{
+	return $this -> _node;
 }
 
 }

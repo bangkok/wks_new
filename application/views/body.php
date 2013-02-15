@@ -1,3 +1,9 @@
-<?php $this->load->view($_path['header']);?>
-<?php $this->load->view($_path['content']);?>
+<div id="main">
+	<div id="top_line"></div>
+	<div id="container">
+		<?php $this->load->view($_path['header']);?>
+		<?php $this->load->view($_path['content'], $content);?>
+	</div><!--container-->
 <?php $this->load->view($_path['footer']);?>
+
+</div>

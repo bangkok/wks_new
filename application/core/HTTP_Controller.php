@@ -23,23 +23,48 @@ protected $_path = array(
 	'block'	=> array(),
 );
 
+public $node;
 
 function __construct()
 {
 	parent::__construct();
 
-	//$this -> _view_data['_controller'] = &$this;
+	$this->load->model('config_model');
+	$this->load->model('menu_model');
+
+	$this -> _fillNode();
 
 	$this -> _initPath();
 
-	$this -> setStyles('style | page | blocks');
-	$this -> setJs('');
 }
 
 
 public function index()
 {
+	$this -> _fillViewData();
+
 	$this -> _view();
+}
+
+protected function _fillNode()
+{
+	$this -> node = $this -> router -> getNode();
+}
+
+protected function _getContent()
+{
+	return (array)$this -> node;
+}
+
+protected function _fillViewData()
+{
+	//$this -> _view_data['_controller'] = &$this;
+
+	$this -> _setStyles('style | page | blocks');
+	$this -> _setJs('');
+
+	$this -> _view_data['content'] = $this -> _getContent();
+
 }
 
 protected function _view()
@@ -56,42 +81,43 @@ protected function _initPath()
 	$this -> _path['view'] = '';
 	$this -> _path['page']		= 'page';
 	$this -> _path['head']		= 'head';
+	$this -> _path -> head['title'] = 'title';
 	$this -> _path['body']		= 'body';
 	$this -> _path['header']	= 'header';
 	$this -> _path['footer']	= 'footer';
 	$this -> _path['content']	= 'content';
 
-	$this -> _path -> tpl = new Path('tpl', $this -> _path);
+	$this -> _path['block']		= 'block';
+	$this -> _path -> block['auth'] = 'auth';
 
-	$this -> _path -> block = new Path('block', $this -> _path);
-	$this -> _path -> block['auth'] = $this -> _folder['block'] . 'auth';
+	$this -> _path['tpl']		= 'tpl';
 
 	$this -> _path -> css = new Path('css');
 	$this -> _path -> js = new Path('js');
 }
 
 
-function setStyles($styleString, $style = array())
+protected function _setStyles($styleString, $style = array())
 {
-	$this -> _view_data['_head']['_style'] = array_merge(
+	$this -> _view_data['_head']['_style'] = array_unique(array_merge(
 			$style,
 			array_map('trim', explode('|', $styleString))
-		);
+		));
 }
-function setJs($jsString, $js = array())
+protected function _setJs($jsString, $js = array())
 {
-	$this -> _view_data['_head']['_js'] = array_merge(
+	$this -> _view_data['_head']['_js'] = array_unique(array_merge(
 			$js,
 			array_map('trim', explode('|', $jsString))
-		);
+		));
 }
-function addStyles($styleString)
+protected function _addStyles($styleString)
 {
-	$this -> setStyles($styleString, $this -> _view_data['_head']['_style']);
+	$this -> _setStyles($styleString, $this -> _view_data['_head']['_style']);
 }
-function addJs($jsString)
+protected function _addJs($jsString)
 {
-	$this -> setJs($jsString, $this -> _view_data['_head']['_js']);
+	$this -> _setJs($jsString, $this -> _view_data['_head']['_js']);
 }
 
 }

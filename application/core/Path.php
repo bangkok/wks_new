@@ -54,7 +54,7 @@ function __set($name, Path $value)
 
 function __toString()
 {
-	return (strval($this -> _parent) ? strval($this -> _parent). '/' : '')
+	return ($this -> _parent ? strval($this -> _parent). '/' : '')
 		. strval($this -> _path);
 }
 

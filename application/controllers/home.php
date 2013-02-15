@@ -6,7 +6,7 @@ function index()
 {
 	$this -> _view_data['_head']['title'] = 'Welcome to CodeIgniter';
 
-	$this -> addStyles('style');
+	$this -> addStyles('home');
 	$this -> addJs('core');
 
 	parent::index();
