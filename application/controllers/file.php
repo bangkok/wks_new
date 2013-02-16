@@ -2,42 +2,46 @@
 
 class File extends Base_Controller {
 
+protected $_domen  = 'wks.com.ua';
 
 function index()
 {
 	$this->load->helper('file');
 
-	$path_file = substr($this -> uri -> uri_string, 5);
+	$path_file = substr(
+		$this -> uri -> uri_string,
+		strlen(reset($this -> uri -> segment_array())) + 1
+	);
 
-	if ( !$file = read_file($path_file) ) {
+	$url_file = 'http://' . $this -> _domen . '/' . $path_file;
 
-		$url_file = 'http://wks.com.ua/' . $path_file;
+	$Headers = @get_headers($url_file, 1);
 
-		$Headers = @get_headers($url_file);
+	if ( strpos($Headers[0], '200') ) {
 
-		if ( strpos($Headers[0], '200') ) {
+		$file = file_get_contents($url_file);
 
-			$file = file_get_contents($url_file);
-
-			if ( !is_dir(dirname($path_file)) ) {
-				mkdir(dirname($path_file), 0755, TRUE);
-			}
-
-			write_file($path_file, $file);
-
-		} else {
-
-			echo $path_file;
-
-			return 0;
-
+		if ( !is_dir(dirname($path_file)) ) {
+			mkdir(dirname($path_file), 0755, TRUE);
 		}
 
+		write_file($path_file, $file);
+
+		ini_set('error_log', APPPATH . 'logs\error.log');
+
+		error_log($path_file ."\n". print_r($Headers, 1));
+
+		header("Content-type: ". $Headers['Content-Type']);
+
+		header("Content-Length: ". $Headers['Content-Length']);
+
+		echo $file;
+
+	} else {
+
+		echo $path_file ."\n<br>\n". print_r($Headers, 1);
+
 	}
-
-	header("Content-type: image/jpeg");
-
-	echo $file;
 
 }
 
