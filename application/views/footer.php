@@ -1,1 +1,1 @@
-<div id="bottom_line">$CONTENT COPY$</div>
+<div id="bottom_line"><?=str_replace('$YEAR$', date("Y"), $copy)?></div>

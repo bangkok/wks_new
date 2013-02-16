@@ -1,6 +1,14 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends HTTP_Controller {
+class Media extends HTTP_Controller {
+
+function index()
+{
+	if('media'== $this->uri->uri_string())
+	header("Location: /media/video");
+
+	parent::index();
+}
 
 protected function _fillViewData()
 {
@@ -10,9 +18,7 @@ protected function _fillViewData()
 
 	$this -> _view_data['content']['text'] = $this -> text_model -> getText($this -> node -> id);
 
-	$this -> _addStyles('home');
-	$this -> _addJs('core');
-
 }
 
 }
+?>

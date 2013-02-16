@@ -16,9 +16,8 @@ RewriteRule ^images/(.*)\.png(.*)$  file/trf/nrfl/flim/$1 [L]
 RewriteRule ^images/(.*)\.swf(.*)$  file/trf/nrfl/flim/$1 [L]
 RewriteRule ^pdfs/(.*)\.pdf(.*)$  file/trf/nrfl/flim/$1 [L]
 
-RewriteCond %{REQUEST_URI} ^/img(.+)$
+RewriteCond %{REQUEST_URI} ^/(img/|css/|js/|typicalprojects)(.+)$
 RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^(.*)$ http://wks.com.ua/$1 [L]
 RewriteRule ^(.*)$ http://new.ll/file/$1 [L]
 
 RewriteRule ^$ /index.php [L]

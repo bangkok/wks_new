@@ -65,7 +65,7 @@ function getMap($id = 0, $auth = 'y')
 		$item['upId'] = $row -> upId;
 		$item['name'] = $row -> title;
 		$item['resource'] = $row -> resource;
-		$item['link'] = $row -> link;
+		$item['link'] = '/' . trim($row -> link, '/');
 
 		$TMap[$item['upId']][$item['id']] = &$item;
 
@@ -77,11 +77,7 @@ function getMap($id = 0, $auth = 'y')
 
 			$item['parent'] = &$TMap[$TMap['upId'][$item['upId']]][$item['upId']];
 
-			if ( $item['parent']['link'] != '/' and $item['link'] != '/' ) {
-
-				$item['link'] = $item['parent']['link'] . '/' . $item['link'];
-
-			}
+			$item['link'] = $item['parent']['link'] . $item['link'];
 
 		}
 
@@ -101,6 +97,11 @@ function getNodeById($id)
 	}
 
 	return NULL;
+}
+
+function getMenuByParentId($id = 1)
+{
+	return $this -> TMap[$id];
 }
 
 function getTitlePath()

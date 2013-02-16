@@ -3,9 +3,9 @@
 	<div id="auth">$AUTH$</div>
 	<div id="buttons">$BUTTONS$</div>
 
-	$LOGO$
+	<a href="/"><div id="logo"><div id="afc"></div></div></a>
 
 	<div id="navigation">
-		$MENU$
+		<?php $this->load->view($_path->block['menu']);?>
 	</div>
 </div>

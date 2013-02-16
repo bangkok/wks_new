@@ -10,7 +10,7 @@ protected $_view_data = array(
 		'_js' => array()
 	)
 );
-
+/*
 protected $_folder = array(
 	'view'	=> '',
 	'tpl'	=> 'tpl/',
@@ -22,6 +22,8 @@ protected $_path = array(
 	'tpl'	=> array(),
 	'block'	=> array(),
 );
+*/
+protected $_path;
 
 public $node;
 
@@ -63,13 +65,23 @@ protected function _fillViewData()
 	$this -> _setStyles('style | page | blocks');
 	$this -> _setJs('');
 
+	$this -> _view_data['_path'] = $this -> _path;
+
 	$this -> _view_data['content'] = $this -> _getContent();
+
+	$this -> _view_data['_head']['path'] = array_merge(
+		array($this -> config_model -> getConfigName('title')),
+		$this -> menu_model -> getTitlePath()
+	);
+
+	$this -> _view_data['header']['Menu'] = $this -> menu_model -> getMenuByParentId();
+
+	$this -> _view_data['footer']['copy'] = $this -> config_model -> getConfigName('copy');
 
 }
 
 protected function _view()
 {
-	$this -> _view_data['_path'] = $this -> _path;
 
 	$this -> load -> view($this -> _path['page'], $this -> _view_data);
 }
@@ -89,6 +101,7 @@ protected function _initPath()
 
 	$this -> _path['block']		= 'block';
 	$this -> _path -> block['auth'] = 'auth';
+	$this -> _path -> block['menu'] = 'menutop';
 
 	$this -> _path['tpl']		= 'tpl';
 
