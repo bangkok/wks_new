@@ -16,8 +16,8 @@ function _remap()
 protected function _is_view_method($method_name)
 {
 	return method_exists($this, $method_name)
-		and $method = new ReflectionMethod(__CLASS__, $method_name)
-			and $method -> isPublic();
+		and $method = new ReflectionMethod($this, $method_name)
+		and $method -> isPublic();
 }
 
 }

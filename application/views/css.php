@@ -8,7 +8,9 @@ $CSS = array();
 $CSS['style'] = 'style.css';
 $CSS['style1'] = 'style1.css';
 $CSS['page'] = 'page.css';
-$CSS['blocks']= '
+
+$CSS['UI'] = 'UI/jquery-ui-1.8.17.custom.css';
+$CSS['blocks'] = '
 <style type="text/css">
 	div.block{
 		margin: 10px 10px 10px 0;
@@ -29,10 +31,16 @@ $CSS['blocks']= '
 	}
 </style>';
 
-$CSS['home']= '
+$CSS['home'] = '
 <link rel="stylesheet" href="/css/accordion.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/css/roundedcorners.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/css/home.css" type="text/css" media="screen" />';
+
+$CSS['button'] = 'button.css';
+$CSS['style_WKS_house']= 'style_WKS_house.css';
+$CSS['colorbox']= 'colorbox/colorbox.css';
+$CSS['galleriffic-4']= 'galleriffic-4.css';
+
 
 
 
@@ -40,17 +48,18 @@ $CSS['home']= '
 
 foreach ( $_style as $name ) {
 	if ( !empty($CSS[$name]) ) {
-		if ( substr((trim($CSS[$name])), 0, 1) == '<' ) {
-			echo $CSS[$name];
-		} else {
-			@list($file_name, $media_type) = array_map('trim', explode('|', $CSS[$name]));
-			$file_name = trim($CSS[$name]);
-			if ( substr($file_name, 0, 7) != 'http://' ) {
-				$file_name = '/' . $_path['css'] . '/' . $file_name;
-			}
-?>
-<link href="<?=$file_name?>" media="<?=$media_type?$media_type:'screen'?>" rel="stylesheet" type="text/css" >
+		foreach ( explode('|', $CSS[$name]) as $item ) {
+			if ( substr(($item = trim($item)), 0, 1) == '<' ) {
+				echo $item . "\n";
+			} else {
+				@list($file_name, $media_type) = array_map('trim', explode(':', $item));
+				$file_name = $item;
+				if ( substr($file_name, 0, 7) != 'http://' ) {
+					$file_name = '/' . $_path['css'] . '/' . $file_name;
+				}
+?><link href="<?=$file_name?>" media="<?=$media_type?$media_type:'screen'?>" rel="stylesheet" type="text/css" />
 <?php
+			}
 		}
 	}
 }

@@ -40,6 +40,19 @@ function __construct()
 
 }
 
+function _remap()
+{
+	$level = 1 + $this->node->level;
+
+	if ( $link = $this->uri->segment($level)
+		and $this -> _is_view_method($link)
+	) {
+		$this -> $link($this->uri->segment($level + 1));
+	} else {
+		$this->index($this->uri->segment($level));
+	}
+}
+
 
 public function index()
 {
@@ -50,12 +63,12 @@ public function index()
 
 protected function _fillNode()
 {
-	$this -> node = $this -> router -> getNode();
+	$this -> node = (object) $this -> menu_model -> getNode();
 }
 
 protected function _getContent()
 {
-	return (array)$this -> node;
+	return (array) $this -> router -> getNode();
 }
 
 protected function _fillViewData()
@@ -63,21 +76,26 @@ protected function _fillViewData()
 	//$this -> _view_data['_controller'] = &$this;
 
 	$this -> _setStyles('style | page | blocks');
-	$this -> _setJs('');
+	$this -> _setJs('jquery');
 
 	$this -> _view_data['_path'] = $this -> _path;
 
-	$this -> _view_data['content'] = $this -> _getContent();
+	//$this -> _view_data['content'] = $this -> _getContent();
 
-	$this -> _view_data['_head']['path'] = array_merge(
-		array($this -> config_model -> getConfigName('title')),
-		$this -> menu_model -> getTitlePath()
-	);
+	$this -> _view_data['_head']['path'] = $this -> _getHeadPath();
 
 	$this -> _view_data['header']['Menu'] = $this -> menu_model -> getMenuByParentId();
 
 	$this -> _view_data['footer']['copy'] = $this -> config_model -> getConfigName('copy');
 
+}
+
+protected function _getHeadPath()
+{
+	return array_merge(
+		array($this -> config_model -> getConfigName('title')),
+		$this -> menu_model -> getTitlePath()
+	);
 }
 
 protected function _view()
@@ -123,6 +141,7 @@ protected function _setJs($jsString, $js = array())
 			$js,
 			array_map('trim', explode('|', $jsString))
 		));
+
 }
 protected function _addStyles($styleString)
 {
