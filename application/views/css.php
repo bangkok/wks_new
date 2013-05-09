@@ -37,6 +37,7 @@ $CSS['home'] = '
 <link rel="stylesheet" href="/css/home.css" type="text/css" media="screen" />';
 
 $CSS['button'] = 'button.css';
+$CSS['buttons'] = 'buttons.css';
 $CSS['style_WKS_house']= 'style_WKS_house.css';
 $CSS['colorbox']= 'colorbox/colorbox.css';
 $CSS['galleriffic-4']= 'galleriffic-4.css';

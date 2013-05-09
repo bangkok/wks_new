@@ -36,6 +36,8 @@ $JS['colorbox']= 'jquery.colorbox.js | <script type="text/javascript">
 </script>
 ';
 
+$JS['buttons'] = 'buttons.js';
+$JS['function'] = 'function.js';
 $JS['blocks']='jquery-ui.min.js | blocks.js';
 $JS['gaq']= 'gaq.js';
 

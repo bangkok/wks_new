@@ -4,7 +4,7 @@
 	</div>
 
 	<div id="content">
-		<div id="right-image"></div>
+		<?/* <div id="right-image"></div>*/ ?>
 
 		<? if ( !empty($title) ) : ?>
 			<div id="header_content"><h3><?=$title?></h3></div>

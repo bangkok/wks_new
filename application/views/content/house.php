@@ -230,7 +230,7 @@ if(isset($content))
 <?php endif;?>
 
 <div style="clear:both"></div>
-<?if('test'==$this->uri->segment(4))$this->load->view('block/calc.inc.php');?>
+<?if('test'==$this->uri->segment(4))$this->load->view($_path->block['calc']);?>
 
 <p style="clear:left">
 <a href="/construction/typical_projects/<?=$typeId?>"> << другие дома</a>

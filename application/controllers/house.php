@@ -10,6 +10,11 @@ function index($house)
 
 	$this->load->model('catalog_model');
 
+	if ('test' == $house) {
+		$house = 11;
+		$test = TRUE;
+	}
+
 	$this -> _house = $this -> catalog_model -> getHouse($house);
 
 	$this -> _fillViewData();
@@ -18,14 +23,12 @@ function index($house)
 
 	$this -> _path -> content['text'] = 'house';
 
-	if('test' == $house){
-		$house = 11;
-		$this -> _addStyles('style_WKS_house | colorbox | home | buttons');
+	if ( !empty($test) ) {
+		$this -> _path -> block['calc'] = 'calc';
 		$this -> _addJs('function');
-	} else {
-
-		$this -> _addStyles('style_WKS_house | colorbox | home | buttons');
 	}
+
+	$this -> _addStyles('style_WKS_house | colorbox | home | buttons');
 
 	$this -> _addJs('colorbox | buttons');
 
