@@ -364,8 +364,15 @@ $config['proxy_ips'] = '';
 
 function __autoload($class)
 {
-	if(strpos($class, 'CI_') !== 0)
-	{
-		@include_once( APPPATH . 'core/'. $class . EXT );
+
+	if ( strpos($class, 'CI_') !== 0
+		and file_exists($path = APPPATH . 'core/' . $class . EXT)
+		|| file_exists($path = APPPATH . 'controllers/' . strtolower($class) . EXT)
+		|| file_exists($path = APPPATH . 'models/' . strtolower($class) . EXT)
+	) {
+
+		@include_once($path);
+
 	}
+
 }
