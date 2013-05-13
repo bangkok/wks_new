@@ -21,18 +21,24 @@ $JS['jquery.opacityrollover']= 'jquery.opacityrollover.js';
 $JS['cycle']= 'jquery.cycle.all.2.74.js | <script type="text/javascript">
 $.fn.cycle.defaults.speed   = 1500;
 $.fn.cycle.defaults.timeout = 6000;
-$(".Panorama").cycle({fx:\'fade\',delay:-4000});
+$(document).ready(function(){
+	if ($(".Panorama").children().length > 1) {
+		$(".Panorama").cycle({fx:\'fade\',delay:-4000});
+	}
+});
 </script>';
 
 $JS['accordian'] = 'accordian.pack.js | <script type="text/javascript">
-$("body").ready(function(){Accordian("basic-accordian",1,"header_highlight")});
+$(document).ready(function(){
+	Accordian("basic-accordian",1,"header_highlight");
+});
 </script>';
 
 $JS['colorbox']= 'jquery.colorbox.js | <script type="text/javascript">
-	$(document).ready(function(){
-				$(".group1").colorbox({rel:"group1"});
-				$(".calc").colorbox({inline:true});
-			});
+$(document).ready(function(){
+	$(".group1").colorbox({rel:"group1"});
+	$(".calc").colorbox({inline:true});
+});
 </script>
 ';
 
