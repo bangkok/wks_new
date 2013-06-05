@@ -18,7 +18,7 @@ RewriteRule ^pdfs/(.*)\.pdf(.*)$  file/trf/nrfl/flim/$1 [L]
 
 RewriteCond %{REQUEST_URI} ^/(img/|css/|js/|typicalprojects)(.+)$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ http://new.ll/file/$1 [L]
+RewriteRule ^(.*)$ /file/$1 [L]
 
 RewriteRule ^$ /index.php [L]
 
